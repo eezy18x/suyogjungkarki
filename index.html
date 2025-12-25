@@ -20,13 +20,13 @@
             overflow-x: hidden;
         }
 
-        /* Matrix Canvas Background */
+        /* Matrix Background */
         #matrix-canvas {
             position: fixed; top: 0; left: 0;
-            z-index: -1; opacity: 0.15;
+            z-index: -1; opacity: 0.12;
         }
 
-        /* Netflix-style loading bar */
+        /* Netflix Loading Bar */
         #loader-bar {
             position: fixed; top: 0; left: 0;
             width: 100%; height: 4px;
@@ -37,7 +37,6 @@
             transition: transform 0.5s cubic-bezier(0.65, 0.05, 0.36, 1);
         }
 
-        /* Navbar Redesign */
         nav {
             background: rgba(22, 27, 34, 0.95);
             padding: 1.2rem;
@@ -55,16 +54,15 @@
 
         nav a:hover { color: var(--netflix-red); text-shadow: 0 0 8px var(--netflix-red); }
 
-        /* Terminal Redesign */
         .main-content {
             display: flex; justify-content: center;
-            align-items: center; min-height: 80vh; padding: 20px;
+            align-items: center; min-height: 85vh; padding: 20px;
         }
 
         .terminal-window {
             background: rgba(1, 4, 9, 0.9);
             border: 1px solid #30363d;
-            width: 100%; max-width: 900px;
+            width: 100%; max-width: 950px;
             border-radius: 8px;
             box-shadow: 0 20px 50px rgba(0,0,0,0.8);
             overflow: hidden;
@@ -73,12 +71,13 @@
         .terminal-header {
             background: var(--terminal-gray);
             padding: 10px 15px; display: flex; gap: 8px;
+            align-items: center;
         }
 
         .dot { width: 12px; height: 12px; border-radius: 50%; }
         .red { background: #ff5f56; } .yellow { background: #ffbd2e; } .green { background: #27c93f; }
 
-        .terminal-body { padding: 30px; line-height: 1.6; min-height: 400px; }
+        .terminal-body { padding: 30px; line-height: 1.6; min-height: 500px; }
 
         .prompt { color: var(--netflix-red); font-weight: bold; }
         .command { color: #58a6ff; }
@@ -87,18 +86,29 @@
             display: inline-block; width: 10px; height: 20px;
             background: var(--neon-green);
             animation: blink 1s infinite;
-            vertical-align: middle; margin-left: 5px;
+            vertical-align: middle;
         }
         @keyframes blink { 50% { opacity: 0; } }
 
-        /* Skills Progress Bar */
+        /* Projects Section */
+        .project-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 20px; }
+        .project-card { border: 1px solid #30363d; padding: 15px; background: rgba(22, 27, 34, 0.5); border-radius: 5px; transition: 0.3s; }
+        .project-card:hover { border-color: var(--netflix-red); background: rgba(229, 9, 20, 0.05); }
+
         .skill-bar { background: #30363d; height: 10px; border-radius: 5px; margin-top: 5px; overflow: hidden; }
         .skill-fill { background: var(--netflix-red); height: 100%; width: 0; transition: width 2s ease-in-out; }
 
         .hidden { display: none; }
+
+        /* Traffic Monitor Feature */
+        #traffic-log {
+            font-size: 0.75rem; color: #8b949e; margin-top: 20px;
+            background: #000; padding: 10px; border-radius: 4px;
+            height: 100px; overflow: hidden; border: 1px solid #161b22;
+        }
     </style>
 </head>
-<body class="loaded">
+<body>
     <canvas id="matrix-canvas"></canvas>
     <div id="loader-bar"></div>
 
@@ -113,68 +123,110 @@
         <div class="terminal-window">
             <div class="terminal-header">
                 <div class="dot red"></div><div class="dot yellow"></div><div class="dot green"></div>
+                <span style="margin-left: auto; color: #8b949e; font-size: 0.7rem; font-family: monospace;" id="sys-clock"></span>
             </div>
             <div class="terminal-body">
+                
                 <div id="home">
                     <span class="prompt">suyog@portfolio</span>:<span class="command">~# whoami</span>
-                    <p id="typing-text"></p><span class="cursor"></span>
+                    <h1 style="color: #ffffff; margin: 15px 0; font-size: 1.8rem;">Welcome to Suyog's Portfolio</h1>
+                    
+                    <p id="typing-text" style="min-height: 60px;"></p><span class="cursor"></span>
+
+                    <div style="margin: 25px 0; display: flex; gap: 10px; flex-wrap: wrap;">
+                        <span style="border: 1px solid var(--neon-green); padding: 4px 12px; border-radius: 20px; font-size: 0.7rem;">RED TEAMING</span>
+                        <span style="border: 1px solid var(--neon-green); padding: 4px 12px; border-radius: 20px; font-size: 0.7rem;">CRYPTOGRAPHY</span>
+                        <span style="border: 1px solid var(--neon-green); padding: 4px 12px; border-radius: 20px; font-size: 0.7rem;">END-TO-END ENCRYPTION</span>
+                    </div>
+
+                    <p style="color: #58a6ff; font-weight: bold; margin-top: 30px;">[+] ACTIVE REPOSITORIES</p>
+                    <div class="project-grid">
+                        <div class="project-card">
+                            <div style="color: #fff; font-weight: bold;">HoneySentinel</div>
+                            <div style="font-size: 0.75rem; color: #8b949e; margin: 5px 0;">Lightweight Intrusion Detection.</div>
+                            <a href="https://github.com/eezy18x/HoneySentinel-Lightweight-Honeypot-for-Intrusion-Detection" target="_blank" style="color: var(--netflix-red); font-size: 0.7rem; text-decoration: none;">VIEW SOURCE</a>
+                        </div>
+                        <div class="project-card">
+                            <div style="color: #fff; font-weight: bold;">suyoCr4ck</div>
+                            <div style="font-size: 0.75rem; color: #8b949e; margin: 5px 0;">Zip cracker (RockYou default).</div>
+                            <a href="https://github.com/eezy18x/suyoCr4ck" target="_blank" style="color: var(--netflix-red); font-size: 0.7rem; text-decoration: none;">VIEW SOURCE</a>
+                        </div>
+                        <div class="project-card">
+                            <div style="color: #fff; font-weight: bold;">SecureChatApp</div>
+                            <div style="font-size: 0.75rem; color: #8b949e; margin: 5px 0;">E2E Encrypted Messaging.</div>
+                            <a href="https://github.com/eezy18x/SecureChatApp" target="_blank" style="color: var(--netflix-red); font-size: 0.7rem; text-decoration: none;">VIEW SOURCE</a>
+                        </div>
+                        <div class="project-card">
+                            <div style="color: #fff; font-weight: bold;">Steganography Tool</div>
+                            <div style="font-size: 0.75rem; color: #8b949e; margin: 5px 0;">Hide data in images.</div>
+                            <a href="https://github.com/eezy18x/steganography-tool" target="_blank" style="color: var(--netflix-red); font-size: 0.7rem; text-decoration: none;">VIEW SOURCE</a>
+                        </div>
+                    </div>
+
+                    <p style="color: #58a6ff; font-weight: bold; margin-top: 30px;">[+] NETWORK_TRAFFIC_MONITOR</p>
+                    <div id="traffic-log"></div>
                 </div>
 
                 <div id="skills" class="hidden">
                     <span class="prompt">suyog@portfolio</span>:<span class="command">~# list --skills</span>
+                    <br><br>
                     <p>Networking (Cisco) [80%]</p> <div class="skill-bar"><div class="skill-fill" style="width:80%"></div></div>
                     <p>Linux Security (Kali) [95%]</p> <div class="skill-bar"><div class="skill-fill" style="width:95%"></div></div>
+                    <p>Python Automation [70%]</p> <div class="skill-bar"><div class="skill-fill" style="width:70%"></div></div>
                     <p>Web Exploitation [50%]</p> <div class="skill-bar"><div class="skill-fill" style="width:50%"></div></div>
                 </div>
 
                 <div id="achievements" class="hidden">
-                    <span class="prompt">suyog@portfolio</span>:<span class="command">~# ls /certs/verified</span>
-                    <ul>
-                        <li><a href="https://courses.redteamleaders.com/exam-completion/3d47bc9521dfcc12" style="color:white">RedTeam Cert: 3d47bc...</a></li>
-                        <li><a href="https://courses.redteamleaders.com/exam-completion/15a3353a286f8293" style="color:white">RedTeam Cert: 15a335...</a></li>
-                    </ul>
+                    <span class="prompt">suyog@portfolio</span>:<span class="command">~# cat certifications.json</span>
+                    <br><br>
+                    <div class="project-card" style="margin-bottom: 10px;">
+                        <span style="color: #fff;">Red Team Leaders: Exam Completion 1</span><br>
+                        <a href="https://courses.redteamleaders.com/exam-completion/3d47bc9521dfcc12" target="_blank" style="color: var(--netflix-red); font-size: 0.8rem;">VERIFY_CREDENTIAL</a>
+                    </div>
+                    <div class="project-card">
+                        <span style="color: #fff;">Red Team Leaders: Exam Completion 2</span><br>
+                        <a href="https://courses.redteamleaders.com/exam-completion/15a3353a286f8293" target="_blank" style="color: var(--netflix-red); font-size: 0.8rem;">VERIFY_CREDENTIAL</a>
+                    </div>
                 </div>
 
-               <div id="vault" class="hidden">
-    <span class="prompt">suyog@portfolio</span>:<span class="command">~# cd /mnt/secure_vault/games</span>
-    <p>Accessing shared data... [OK]</p>
-    <br>
-    <table style="width:100%; border-collapse: collapse; color: #58a6ff;">
-        <tr style="border-bottom: 1px solid #30363d; text-align: left;">
-            <th style="padding: 10px;">OBJECT NAME</th>
-            <th style="padding: 10px;">TYPE</th>
-            <th style="padding: 10px;">ACTION</th>
-        </tr>
-        <tr>
-            <td style="padding: 10px;">SaveGame_2.rar</td>
-            <td style="padding: 10px;">RAR ARCHIVE</td>
-            <td style="padding: 10px;">
-                <a href="SaveGame_2.rar" download style="color:var(--netflix-red); text-decoration: none; border: 1px solid var(--netflix-red); padding: 5px 12px; border-radius: 4px; font-weight: bold; background: rgba(229, 9, 20, 0.1);">DOWNLOAD</a>
-            </td>
-        </tr>
-    </table>
-    <p style="margin-top: 20px; color: #8b949e; font-size: 0.8rem;">[!] Warning: Ensure you have WinRAR or 7-Zip installed to extract .rar files.</p>
-</div>
+                <div id="vault" class="hidden">
+                    <span class="prompt">suyog@portfolio</span>:<span class="command">~# access /loot/vault</span>
+                    <p>Authorized access only. Shared game files listed below:</p>
+                    <br>
+                    <table style="width:100%; text-align: left; color: #58a6ff; border-collapse: collapse;">
+                        <tr style="border-bottom: 1px solid #161b22;">
+                            <th style="padding: 10px;">FILE_NAME</th>
+                            <th style="padding: 10px;">EXT</th>
+                            <th style="padding: 10px;">LINK</th>
+                        </tr>
+                        <tr>
+                            <td style="padding: 10px;">SaveGame_2</td>
+                            <td style="padding: 10px;">.RAR</td>
+                            <td style="padding: 10px;"><a href="SaveGame_2.rar" download style="color: var(--netflix-red); text-decoration: none; border: 1px solid var(--netflix-red); padding: 3px 10px; border-radius: 4px;">GET_FILE</a></td>
+                        </tr>
+                    </table>
+                </div>
+
             </div>
         </div>
     </div>
 
     <script>
-        // Matrix Rain Effect
+        // Matrix Rain
         const canvas = document.getElementById('matrix-canvas');
         const ctx = canvas.getContext('2d');
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
-        const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%^&*()*&^%";
+        const letters = "010101XYZ#@$%&*";
         const fontSize = 16;
         const columns = canvas.width / fontSize;
         const drops = Array(Math.floor(columns)).fill(1);
 
         function drawMatrix() {
-            ctx.fillStyle = 'rgba(13, 17, 23, 0.05)';
+            ctx.fillStyle = 'rgba(13, 17, 23, 0.08)';
             ctx.fillRect(0, 0, canvas.width, canvas.height);
             ctx.fillStyle = '#0F0';
-            ctx.font = fontSize + 'px arial';
+            ctx.font = fontSize + 'px monospace';
             for (let i = 0; i < drops.length; i++) {
                 const text = letters.charAt(Math.floor(Math.random() * letters.length));
                 ctx.fillText(text, i * fontSize, drops[i] * fontSize);
@@ -182,33 +234,52 @@
                 drops[i]++;
             }
         }
-        setInterval(drawMatrix, 33);
+        setInterval(drawMatrix, 35);
 
-        // Section Switching with Netflix Buffer
+        // Section Switcher
         function showSection(sectionId) {
             const bar = document.getElementById('loader-bar');
             bar.style.transform = "scaleX(1)";
-            
             setTimeout(() => {
-                const sections = ['home', 'skills', 'achievements', 'vault'];
-                sections.forEach(s => document.getElementById(s).classList.add('hidden'));
+                ['home', 'skills', 'achievements', 'vault'].forEach(id => {
+                    document.getElementById(id).classList.add('hidden');
+                });
                 document.getElementById(sectionId).classList.remove('hidden');
                 bar.style.transform = "scaleX(0)";
             }, 600);
         }
 
-        // Home Typing Effect
-        const typingElement = document.getElementById("typing-text");
-        const introText = "Initializing secure connection... Access granted. Welcome Suyog Karki. Cybersecurity student specializing in Network Security and Penetration Testing.";
-        let index = 0;
-        function typeEffect() {
-            if (index < introText.length) {
-                typingElement.innerHTML += introText.charAt(index);
-                index++;
-                setTimeout(typeEffect, 40);
+        // Typing Effect
+        const introText = "System initialized. Secure connection established. I am Suyog Karki, a Cybersecurity student focused on defensive tool development and offensive security methodologies.";
+        let i = 0;
+        function type() {
+            if (i < introText.length) {
+                document.getElementById("typing-text").innerHTML += introText.charAt(i);
+                i++;
+                setTimeout(type, 35);
             }
         }
-        typeEffect();
+
+        // Live Traffic Simulation
+        function simulateTraffic() {
+            const log = document.getElementById('traffic-log');
+            const ips = ["192.168.1.105", "10.0.0.14", "172.16.0.5", "8.8.8.8"];
+            const actions = ["BLOCK", "ALLOW", "FILTER", "SCAN"];
+            setInterval(() => {
+                const line = `[${new Date().toLocaleTimeString()}] INBOUND: ${ips[Math.floor(Math.random()*ips.length)]} - ACTION: ${actions[Math.floor(Math.random()*actions.length)]}`;
+                log.innerHTML = line + "<br>" + log.innerHTML;
+            }, 2000);
+        }
+
+        // Clock
+        setInterval(() => {
+            document.getElementById('sys-clock').innerText = new Date().toLocaleString();
+        }, 1000);
+
+        window.onload = () => {
+            type();
+            simulateTraffic();
+        };
     </script>
 </body>
 </html>
