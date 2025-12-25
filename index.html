@@ -1,25 +1,60 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>My CyberSec Portfolio</title>
+    <meta charset="UTF-8">
+    <title>CyberSec Portfolio | Home</title>
     <style>
-        body { background-color: #0d1117; color: #58a6ff; font-family: 'Courier New', monospace; padding: 40px; }
-        .terminal { border: 1px solid #30363d; padding: 20px; background: #161b22; border-radius: 5px; box-shadow: 0 0 15px rgba(0,0,0,0.5); }
+        body { background-color: #0d1117; color: #58a6ff; font-family: 'Courier New', monospace; margin: 0; padding: 0; overflow-x: hidden; }
+        
+        /* Netflix Loading Bar Animation */
+        #loader { position: fixed; top: 0; left: 0; width: 100%; height: 4px; background: #e50914; z-index: 9999; transform: scaleX(0); transform-origin: left; transition: transform 0.4s ease-in-out; }
+        .loading #loader { animation: netflix-load 1.5s infinite; }
+        @keyframes netflix-load { 0% { transform: scaleX(0); } 50% { transform: scaleX(0.7); } 100% { transform: scaleX(1); } }
+
+        nav { background: #161b22; padding: 15px; border-bottom: 1px solid #30363d; text-align: center; }
+        nav a { color: #8b949e; text-decoration: none; margin: 0 15px; font-weight: bold; transition: 0.3s; }
+        nav a:hover { color: #e50914; }
+
+        .container { padding: 40px; display: flex; justify-content: center; }
+        .terminal { border: 1px solid #30363d; padding: 25px; background: #010409; width: 80%; border-radius: 6px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
         h1 { color: #238636; }
-        a { color: #ff7b72; text-decoration: none; }
-        a:hover { text-decoration: underline; }
+        .cursor { display: inline-block; width: 10px; height: 18px; background: #238636; animation: blink 1s infinite; vertical-align: middle; }
+        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
     </style>
 </head>
 <body>
-    <div class="terminal">
-        <h1>[root@portfolio ~]# whoami</h1>
-        <p>Welcome! I am a Cybersecurity student focusing on network security and penetration testing.</p>
-        
-        <h2>Current Projects</h2>
-        <ul>
-            <li><a href="#">Cisco Networking Lab (Packet Tracer)</a></li>
-            <li><a href="#">VPN & Firewall Implementation</a></li>
-        </ul>
+    <div id="loader"></div>
+    <nav>
+        <a href="index.html" onclick="startLoading()">Home</a>
+        <a href="skills.html" onclick="startLoading()">Skills</a>
+        <a href="achievements.html" onclick="startLoading()">Achievements</a>
+        <a href="vault.html" onclick="startLoading()">The Vault (Games)</a>
+    </nav>
+
+    <div class="container">
+        <div class="terminal">
+            <h1>[root@portfolio ~]# whoami</h1>
+            <p id="typing-text"></p><span class="cursor"></span>
+        </div>
     </div>
+
+    <script>
+        // Typing Effect
+        const text = "System Breach Successful... Initializing CyberSec Portfolio... Welcome, eezy18x.";
+        let i = 0;
+        function typeWriter() {
+            if (i < text.length) {
+                document.getElementById("typing-text").innerHTML += text.charAt(i);
+                i++;
+                setTimeout(typeWriter, 50);
+            }
+        }
+        window.onload = typeWriter;
+
+        // Netflix Load Trigger
+        function startLoading() {
+            document.body.classList.add('loading');
+        }
+    </script>
 </body>
 </html>
