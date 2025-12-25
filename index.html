@@ -160,30 +160,6 @@
     </div>
 
     <script>
-        // Live Clock for System Status
-function updateClock() {
-    const now = new Date();
-    document.getElementById('live-clock').innerText = "SYS_TIME: " + now.toLocaleTimeString();
-}
-setInterval(updateClock, 1000);
-
-// Updated Typing Effect
-const typingElement = document.getElementById("typing-text");
-const introText = "System Breach Successful... Access granted. You are viewing the secure repository of Suyog Karki. I am a Cybersecurity student specializing in building resilient network infrastructures and identifying vulnerabilities.";
-let index = 0;
-
-function typeEffect() {
-    if (index < introText.length) {
-        typingElement.innerHTML += introText.charAt(index);
-        index++;
-        setTimeout(typeEffect, 35);
-    }
-}
-// Ensure this runs when the page loads
-window.onload = () => {
-    typeEffect();
-    updateClock();
-};
         // Matrix Rain Effect
         const canvas = document.getElementById('matrix-canvas');
         const ctx = canvas.getContext('2d');
