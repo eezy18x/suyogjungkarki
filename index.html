@@ -331,10 +331,8 @@ window.onload = () => {
             document.getElementById('sys-clock').innerText = new Date().toLocaleString();
         }, 1000);
 
-        window.onload = () => {
-            type();
-            simulateTraffic();
-        };
-    </script>
-</body>
-</html>
+        // Corrected window.onload (Combined both into one)
+window.onload = () => {
+    typeQuotes();      // Start the dynamic quote engine
+    simulateTraffic(); // Start the network monitor
+};
