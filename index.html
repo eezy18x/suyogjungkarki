@@ -251,16 +251,69 @@
             }, 600);
         }
 
-        // Typing Effect
-        const introText = "System initialized. Secure connection established. I am Suyog Karki, a Cybersecurity student focused on defensive tool development and offensive security methodologies.";
-        let i = 0;
-        function type() {
-            if (i < introText.length) {
-                document.getElementById("typing-text").innerHTML += introText.charAt(i);
-                i++;
-                setTimeout(type, 35);
-            }
-        }
+     // --- DYNAMIC QUOTE ENGINE ---
+const typingElement = document.getElementById("typing-text");
+const quotes = [
+    "Privacy is not an option, it is a prerequisite.", "The quieter you become, the more you are able to hear.",
+    "Data is the new oil, but security is the new engine.", "Encryption is the key to digital freedom.",
+    "Zero Trust: Never trust, always verify.", "Social Engineering is the hardest to patch.",
+    "Deciphering encrypted blocks...", "Everything is a target.", "Patching the human firewall.",
+    "Scanning for open ports...", "SQL Injection attempt blocked.", "Brute force protection active.",
+    "Security is a process, not a product.", "The world is a network.", "Identity is the new perimeter.",
+    "IoT: Internet of Threats.", "Your data is your legacy.", "Welcome to the digital frontier.",
+    "Analyzing packet headers...", "Firewall rules updated.", "Bypassing the honeypot...",
+    "A shell is all I need.", "Stay paranoid. Stay secure.", "Digital fingerprints detected.",
+    "Metasploit initialized.", "Penetration testing: authorized chaos.", "The grid is down.",
+    "In code we trust.", "Binary is the language of the universe.", "Compiling the future...",
+    "Tracing source IP...", "VPN tunnel secured.", "Neural network learning...",
+    "Quantum encryption active.", "Steganography hidden in plain sight.", "Defense in depth is mandatory.",
+    "Monitoring the dark web...", "Cloud security is shared responsibility.", "Ransomware vaccine deployed.",
+    "Phishing expedition aborted.", "Hunting for vulnerabilities...", "Initializing kernel...",
+    "Expect the unexpected.", "Code is like humor; if you explain it, it’s bad.", "Root access granted.",
+    "Analyzing malware signatures...", "Buffer overflow protection active.", "Decrypting handshake...",
+    "Packet sniffing in progress...", "Sandboxing suspicious files...", "Hardening system BIOS...",
+    "Proxy chains established.", "Obfuscating script signatures...", "Verifying SSL certificates...",
+    "Intrusion detected. Deploying countermeasures.", "Automating threat intelligence...",
+    "Sanitizing database inputs...", "Audit logs secured.", "Exploit payload ready.", "Happy hunting."
+];
+
+let quoteIndex = 0;
+let charIndex = 0;
+let isDeleting = false;
+let typeSpeed = 60;
+
+function typeQuotes() {
+    const currentQuote = quotes[quoteIndex];
+    
+    // Typing or Deleting logic
+    if (isDeleting) {
+        typingElement.innerHTML = currentQuote.substring(0, charIndex - 1);
+        charIndex--;
+        typeSpeed = 30; // Faster when deleting
+    } else {
+        typingElement.innerHTML = currentQuote.substring(0, charIndex + 1);
+        charIndex++;
+        typeSpeed = 60; // Normal typing speed
+    }
+
+    // Determine state changes
+    if (!isDeleting && charIndex === currentQuote.length) {
+        isDeleting = true;
+        typeSpeed = 2000; // Pause at the end of the quote
+    } else if (isDeleting && charIndex === 0) {
+        isDeleting = false;
+        quoteIndex = (quoteIndex + 1) % quotes.length; // Loop back to start
+        typeSpeed = 500; // Small pause before next quote
+    }
+
+    setTimeout(typeQuotes, typeSpeed);
+}
+
+// Update your window.onload to include the new function
+window.onload = () => {
+    typeQuotes(); // Start the quote engine
+    simulateTraffic(); // Keep your traffic monitor running
+};
 
         // Live Traffic Simulation
         function simulateTraffic() {
