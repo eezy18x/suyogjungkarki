@@ -1,0 +1,13 @@
+{
+    "DataType": "PlayerData",
+    "DataVersion": 0,
+    "GameVersion": "0.4.1f13",
+    "PlayerCode": "76561199508633714",
+    "Position": {
+        "x": -63.79379653930664,
+        "y": 0.7150002121925354,
+        "z": 137.7238311767578
+    },
+    "Rotation": 73.43550872802735,
+    "IntroCompleted": true
+}

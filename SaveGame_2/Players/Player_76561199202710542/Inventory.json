@@ -1,0 +1,114 @@
+{
+    "Items": [
+        "{\"DataType\":\"ItemData\",\"DataVersion\":0,\"GameVersion\":\"0.4.1f13\",\"ID\":\"baseballbat\",\"Quantity\":1}",
+        "{\"DataType\":\"WeedData\",\"DataVersion\":0,\"GameVersion\":\"0.4.1f13\",\"ID\":\"greencrack\",\"Quantity\":11,\"Quality\":\"Premium\",\"PackagingID\":\"baggie\"}",
+        "{\"DataType\":\"ItemData\",\"DataVersion\":0,\"GameVersion\":\"0.4.1f13\",\"ID\":\"cheapskateboard\",\"Quantity\":1}",
+        "{\"DataType\":\"WeedData\",\"DataVersion\":0,\"GameVersion\":\"0.4.1f13\",\"ID\":\"sourdiesel\",\"Quantity\":3,\"Quality\":\"Standard\",\"PackagingID\":\"jar\"}",
+        "{\"DataType\":\"WeedData\",\"DataVersion\":0,\"GameVersion\":\"0.4.1f13\",\"ID\":\"sourdiesel\",\"Quantity\":8,\"Quality\":\"Standard\",\"PackagingID\":\"baggie\"}",
+        "{\"DataType\":\"WeedData\",\"DataVersion\":0,\"GameVersion\":\"0.4.1f13\",\"ID\":\"sourdiesel\",\"Quantity\":19,\"Quality\":\"Standard\",\"PackagingID\":\"baggie\"}",
+        "{\"DataType\":\"WeedData\",\"DataVersion\":0,\"GameVersion\":\"0.4.1f13\",\"ID\":\"greencrack\",\"Quantity\":1,\"Quality\":\"Premium\",\"PackagingID\":\"jar\"}",
+        "{\"DataType\":\"WeedData\",\"DataVersion\":0,\"GameVersion\":\"0.4.1f13\",\"ID\":\"sourdiesel\",\"Quantity\":8,\"Quality\":\"Premium\",\"PackagingID\":\"baggie\"}",
+        "{\"DataType\":\"CashData\",\"DataVersion\":0,\"GameVersion\":\"0.4.1f13\",\"ID\":\"cash\",\"Quantity\":1,\"CashBalance\":6192.5}"
+    ],
+    "SlotFilters": [
+        {
+            "Type": 0,
+            "ItemIDs": [],
+            "AllowedQualities": [
+                0,
+                1,
+                2,
+                3,
+                4
+            ]
+        },
+        {
+            "Type": 0,
+            "ItemIDs": [],
+            "AllowedQualities": [
+                0,
+                1,
+                2,
+                3,
+                4
+            ]
+        },
+        {
+            "Type": 0,
+            "ItemIDs": [],
+            "AllowedQualities": [
+                0,
+                1,
+                2,
+                3,
+                4
+            ]
+        },
+        {
+            "Type": 0,
+            "ItemIDs": [],
+            "AllowedQualities": [
+                0,
+                1,
+                2,
+                3,
+                4
+            ]
+        },
+        {
+            "Type": 0,
+            "ItemIDs": [],
+            "AllowedQualities": [
+                0,
+                1,
+                2,
+                3,
+                4
+            ]
+        },
+        {
+            "Type": 0,
+            "ItemIDs": [],
+            "AllowedQualities": [
+                0,
+                1,
+                2,
+                3,
+                4
+            ]
+        },
+        {
+            "Type": 0,
+            "ItemIDs": [],
+            "AllowedQualities": [
+                0,
+                1,
+                2,
+                3,
+                4
+            ]
+        },
+        {
+            "Type": 0,
+            "ItemIDs": [],
+            "AllowedQualities": [
+                0,
+                1,
+                2,
+                3,
+                4
+            ]
+        },
+        {
+            "Type": 0,
+            "ItemIDs": [],
+            "AllowedQualities": [
+                0,
+                1,
+                2,
+                3,
+                4
+            ]
+        }
+    ]
+}

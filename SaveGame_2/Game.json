@@ -1,0 +1,10 @@
+{
+    "DataType": "GameData",
+    "DataVersion": 0,
+    "GameVersion": "0.4.1f13",
+    "OrganisationName": "lado jasot group",
+    "Seed": 868056699,
+    "Settings": {
+        "ConsoleEnabled": true
+    }
+}

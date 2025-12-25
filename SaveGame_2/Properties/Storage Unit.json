@@ -1,0 +1,13 @@
+{
+    "DataType": "PropertyData",
+    "DataVersion": 0,
+    "GameVersion": "0.4.1f13",
+    "PropertyCode": "storageunit",
+    "IsOwned": false,
+    "SwitchStates": [
+        false
+    ],
+    "ToggleableStates": [],
+    "Employees": [],
+    "Objects": []
+}
