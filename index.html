@@ -2,59 +2,198 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>CyberSec Portfolio | Home</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Suyog | CyberSec Portfolio</title>
     <style>
-        body { background-color: #0d1117; color: #58a6ff; font-family: 'Courier New', monospace; margin: 0; padding: 0; overflow-x: hidden; }
+        :root {
+            --neon-green: #00ff41;
+            --netflix-red: #e50914;
+            --bg-black: #0d1117;
+            --terminal-gray: #161b22;
+        }
+
+        body, html {
+            margin: 0; padding: 0;
+            background-color: var(--bg-black);
+            color: var(--neon-green);
+            font-family: 'Courier New', monospace;
+            overflow-x: hidden;
+        }
+
+        /* Matrix Canvas Background */
+        #matrix-canvas {
+            position: fixed; top: 0; left: 0;
+            z-index: -1; opacity: 0.15;
+        }
+
+        /* Netflix-style loading bar */
+        #loader-bar {
+            position: fixed; top: 0; left: 0;
+            width: 100%; height: 4px;
+            background-color: var(--netflix-red);
+            z-index: 9999;
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.5s cubic-bezier(0.65, 0.05, 0.36, 1);
+        }
+
+        /* Navbar Redesign */
+        nav {
+            background: rgba(22, 27, 34, 0.95);
+            padding: 1.2rem;
+            border-bottom: 2px solid var(--terminal-gray);
+            text-align: center;
+            position: sticky; top: 0; z-index: 100;
+        }
+
+        nav a {
+            color: #8b949e; text-decoration: none;
+            margin: 0 20px; font-weight: bold;
+            text-transform: uppercase; letter-spacing: 2px;
+            cursor: pointer; transition: 0.3s;
+        }
+
+        nav a:hover { color: var(--netflix-red); text-shadow: 0 0 8px var(--netflix-red); }
+
+        /* Terminal Redesign */
+        .main-content {
+            display: flex; justify-content: center;
+            align-items: center; min-height: 80vh; padding: 20px;
+        }
+
+        .terminal-window {
+            background: rgba(1, 4, 9, 0.9);
+            border: 1px solid #30363d;
+            width: 100%; max-width: 900px;
+            border-radius: 8px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.8);
+            overflow: hidden;
+        }
+
+        .terminal-header {
+            background: var(--terminal-gray);
+            padding: 10px 15px; display: flex; gap: 8px;
+        }
+
+        .dot { width: 12px; height: 12px; border-radius: 50%; }
+        .red { background: #ff5f56; } .yellow { background: #ffbd2e; } .green { background: #27c93f; }
+
+        .terminal-body { padding: 30px; line-height: 1.6; min-height: 400px; }
+
+        .prompt { color: var(--netflix-red); font-weight: bold; }
+        .command { color: #58a6ff; }
         
-        /* Netflix Loading Bar Animation */
-        #loader { position: fixed; top: 0; left: 0; width: 100%; height: 4px; background: #e50914; z-index: 9999; transform: scaleX(0); transform-origin: left; transition: transform 0.4s ease-in-out; }
-        .loading #loader { animation: netflix-load 1.5s infinite; }
-        @keyframes netflix-load { 0% { transform: scaleX(0); } 50% { transform: scaleX(0.7); } 100% { transform: scaleX(1); } }
+        .cursor {
+            display: inline-block; width: 10px; height: 20px;
+            background: var(--neon-green);
+            animation: blink 1s infinite;
+            vertical-align: middle; margin-left: 5px;
+        }
+        @keyframes blink { 50% { opacity: 0; } }
 
-        nav { background: #161b22; padding: 15px; border-bottom: 1px solid #30363d; text-align: center; }
-        nav a { color: #8b949e; text-decoration: none; margin: 0 15px; font-weight: bold; transition: 0.3s; }
-        nav a:hover { color: #e50914; }
+        /* Skills Progress Bar */
+        .skill-bar { background: #30363d; height: 10px; border-radius: 5px; margin-top: 5px; overflow: hidden; }
+        .skill-fill { background: var(--netflix-red); height: 100%; width: 0; transition: width 2s ease-in-out; }
 
-        .container { padding: 40px; display: flex; justify-content: center; }
-        .terminal { border: 1px solid #30363d; padding: 25px; background: #010409; width: 80%; border-radius: 6px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
-        h1 { color: #238636; }
-        .cursor { display: inline-block; width: 10px; height: 18px; background: #238636; animation: blink 1s infinite; vertical-align: middle; }
-        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+        .hidden { display: none; }
     </style>
 </head>
-<body>
-    <div id="loader"></div>
+<body class="loaded">
+    <canvas id="matrix-canvas"></canvas>
+    <div id="loader-bar"></div>
+
     <nav>
-        <a href="index.html" onclick="startLoading()">Home</a>
-        <a href="skills.html" onclick="startLoading()">Skills</a>
-        <a href="achievements.html" onclick="startLoading()">Achievements</a>
-        <a href="vault.html" onclick="startLoading()">The Vault (Games)</a>
+        <a onclick="showSection('home')">Home</a>
+        <a onclick="showSection('skills')">Skills</a>
+        <a onclick="showSection('achievements')">Certs</a>
+        <a onclick="showSection('vault')">Loot Vault</a>
     </nav>
 
-    <div class="container">
-        <div class="terminal">
-            <h1>[root@portfolio ~]# whoami</h1>
-            <p id="typing-text"></p><span class="cursor"></span>
+    <div class="main-content">
+        <div class="terminal-window">
+            <div class="terminal-header">
+                <div class="dot red"></div><div class="dot yellow"></div><div class="dot green"></div>
+            </div>
+            <div class="terminal-body">
+                <div id="home">
+                    <span class="prompt">suyog@portfolio</span>:<span class="command">~# whoami</span>
+                    <p id="typing-text"></p><span class="cursor"></span>
+                </div>
+
+                <div id="skills" class="hidden">
+                    <span class="prompt">suyog@portfolio</span>:<span class="command">~# list --skills</span>
+                    <p>Networking (Cisco) [80%]</p> <div class="skill-bar"><div class="skill-fill" style="width:80%"></div></div>
+                    <p>Linux Security (Kali) [95%]</p> <div class="skill-bar"><div class="skill-fill" style="width:95%"></div></div>
+                    <p>Web Exploitation [50%]</p> <div class="skill-bar"><div class="skill-fill" style="width:50%"></div></div>
+                </div>
+
+                <div id="achievements" class="hidden">
+                    <span class="prompt">suyog@portfolio</span>:<span class="command">~# ls /certs/verified</span>
+                    <ul>
+                        <li><a href="https://courses.redteamleaders.com/exam-completion/3d47bc9521dfcc12" style="color:white">RedTeam Cert: 3d47bc...</a></li>
+                        <li><a href="https://courses.redteamleaders.com/exam-completion/15a3353a286f8293" style="color:white">RedTeam Cert: 15a335...</a></li>
+                    </ul>
+                </div>
+
+                <div id="vault" class="hidden">
+                    <span class="prompt">suyog@portfolio</span>:<span class="command">~# cd /mnt/secure_vault</span>
+                    <p>Accessing shared game files...</p>
+                    <p>[FILE] SaveGame_Level100.zip - <a href="#" style="color:var(--netflix-red)">DOWNLOAD</a></p>
+                </div>
+            </div>
         </div>
     </div>
 
     <script>
-        // Typing Effect
-        const text = "System Breach Successful... Initializing CyberSec Portfolio... Welcome, eezy18x.";
-        let i = 0;
-        function typeWriter() {
-            if (i < text.length) {
-                document.getElementById("typing-text").innerHTML += text.charAt(i);
-                i++;
-                setTimeout(typeWriter, 50);
+        // Matrix Rain Effect
+        const canvas = document.getElementById('matrix-canvas');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%^&*()*&^%";
+        const fontSize = 16;
+        const columns = canvas.width / fontSize;
+        const drops = Array(Math.floor(columns)).fill(1);
+
+        function drawMatrix() {
+            ctx.fillStyle = 'rgba(13, 17, 23, 0.05)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = '#0F0';
+            ctx.font = fontSize + 'px arial';
+            for (let i = 0; i < drops.length; i++) {
+                const text = letters.charAt(Math.floor(Math.random() * letters.length));
+                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+                if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) drops[i] = 0;
+                drops[i]++;
             }
         }
-        window.onload = typeWriter;
+        setInterval(drawMatrix, 33);
 
-        // Netflix Load Trigger
-        function startLoading() {
-            document.body.classList.add('loading');
+        // Section Switching with Netflix Buffer
+        function showSection(sectionId) {
+            const bar = document.getElementById('loader-bar');
+            bar.style.transform = "scaleX(1)";
+            
+            setTimeout(() => {
+                const sections = ['home', 'skills', 'achievements', 'vault'];
+                sections.forEach(s => document.getElementById(s).classList.add('hidden'));
+                document.getElementById(sectionId).classList.remove('hidden');
+                bar.style.transform = "scaleX(0)";
+            }, 600);
         }
+
+        // Home Typing Effect
+        const typingElement = document.getElementById("typing-text");
+        const introText = "Initializing secure connection... Access granted. Welcome Suyog Karki. Cybersecurity student specializing in Network Security and Penetration Testing.";
+        let index = 0;
+        function typeEffect() {
+            if (index < introText.length) {
+                typingElement.innerHTML += introText.charAt(index);
+                index++;
+                setTimeout(typeEffect, 40);
+            }
+        }
+        typeEffect();
     </script>
 </body>
 </html>
