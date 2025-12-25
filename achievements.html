@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CyberSec Portfolio | Achievements</title>
+    <style>
+        body { background-color: #0d1117; color: #58a6ff; font-family: 'Courier New', monospace; margin: 0; padding: 0; }
+        #loader { position: fixed; top: 0; left: 0; width: 100%; height: 4px; background: #e50914; z-index: 9999; transform: scaleX(0); transform-origin: left; transition: transform 0.4s; }
+        .loading #loader { animation: netflix-load 1.5s infinite; }
+        @keyframes netflix-load { 0% { transform: scaleX(0); } 100% { transform: scaleX(1); } }
+        nav { background: #161b22; padding: 15px; border-bottom: 1px solid #30363d; text-align: center; }
+        nav a { color: #8b949e; text-decoration: none; margin: 0 15px; }
+        nav a:hover { color: #e50914; }
+        .container { padding: 40px; display: flex; justify-content: center; }
+        .terminal { border: 1px solid #30363d; padding: 25px; background: #010409; width: 80%; border-radius: 6px; }
+        h1 { color: #238636; }
+        .cert-link { color: #ff7b72; text-decoration: none; font-weight: bold; }
+        .cert-link:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+    <div id="loader"></div>
+    <nav>
+        <a href="index.html" onclick="startLoading()">Home</a>
+        <a href="skills.html" onclick="startLoading()">Skills</a>
+        <a href="achievements.html" onclick="startLoading()">Achievements</a>
+        <a href="vault.html" onclick="startLoading()">The Vault (Games)</a>
+    </nav>
+
+    <div class="container">
+        <div class="terminal">
+            <h1>[root@portfolio ~]# get-certificates --all</h1>
+            <p>> 2 Certificates Found in Database...</p>
+            <hr style="border: 0.5px solid #30363d;">
+            <ul>
+                <li>
+                    <strong>Red Team Leaders Certification 1</strong><br>
+                    Verify: <a class="cert-link" href="https://courses.redteamleaders.com/exam-completion/3d47bc9521dfcc12" target="_blank">View Credential</a>
+                </li>
+                <br>
+                <li>
+                    <strong>Red Team Leaders Certification 2</strong><br>
+                    Verify: <a class="cert-link" href="https://courses.redteamleaders.com/exam-completion/15a3353a286f8293" target="_blank">View Credential</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        function startLoading() { document.body.classList.add('loading'); }
+    </script>
+</body>
+</html>
