@@ -1,19 +1,22 @@
-<div class="container">
-    <div class="terminal">
-        <h1>[root@portfolio ~]# cd /mnt/vault/games</h1>
-        <p>Secure File Access Granted.</p>
-        <table style="width:100%; color:#58a6ff;">
-            <tr>
-                <th>File Name</th>
-                <th>Type</th>
-                <th>Link</th>
-            </tr>
-            <tr>
-                <td>SaveGame_Level100</td>
-                <td>.ZIP</td>
-                <td><a href="files/game_save.zip" download style="color:#e50914;">DOWNLOAD</a></td>
-                <td><a href="files/vpn.rar" download style="color:#e50914;">DOWNLOAD</a></td>
-            </tr>
-        </table>
-    </div>
+<div id="vault" class="hidden">
+    <span class="prompt">suyog@portfolio</span>:<span class="command">~# access /loot/vault</span>
+    <p>Authorized access only. Shared game files listed below:</p>
+    <br>
+    <table style="width:100%; text-align: left; color: #58a6ff; border-collapse: collapse;">
+        <tr style="border-bottom: 1px solid #161b22;">
+            <th style="padding: 10px;">FILE_NAME</th>
+            <th style="padding: 10px;">EXT</th>
+            <th style="padding: 10px;">ACTION_1</th>
+            <th style="padding: 10px;">ACTION_2</th> </tr>
+        <tr>
+            <td style="padding: 10px;">Game Assets</td>
+            <td style="padding: 10px;">.ZIP / .RAR</td>
+            <td style="padding: 10px;">
+                <a href="files/game_save.zip" download style="color: var(--netflix-red); text-decoration: none; border: 1px solid var(--netflix-red); padding: 3px 10px; border-radius: 4px;">GET_SAVE</a>
+            </td>
+            <td style="padding: 10px;">
+                <a href="files/vpn.rar" download style="color: var(--netflix-red); text-decoration: none; border: 1px solid var(--netflix-red); padding: 3px 10px; border-radius: 4px;">GET_VPN</a>
+            </td>
+        </tr>
+    </table>
 </div>
